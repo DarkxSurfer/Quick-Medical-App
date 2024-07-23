@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medicalstoreapp/src/constants/image_strings.dart';
 import 'package:medicalstoreapp/src/screens/login_screen.dart';
 
 class WalkthroughScreen extends StatelessWidget {
@@ -18,7 +19,7 @@ class WalkthroughScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
-                  child: Image.asset("assets/images/splash_image_1.png"),
+                  child: Image.asset(onBoardingImage1),
                 ),
                 const SizedBox(
                   height: 20,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/common_widgets/category.dart';
 import 'package:medicalstoreapp/src/common_widgets/product.dart';
+import 'package:medicalstoreapp/src/constants/image_strings.dart';
 import 'package:medicalstoreapp/src/screens/cart_screen.dart';
 import 'package:medicalstoreapp/src/screens/notifications.dart';
 import 'package:medicalstoreapp/src/screens/profile_screen.dart';
@@ -25,27 +26,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<MyProduct> imagePaths = [
     const MyProduct(
-        imagePath1: "assets/images/product1.png",
+        imagePath1: productImage1,
         price: "Rs150",
         heading1: 'Accu-check Active \nTest Strip'),
     const MyProduct(
-        imagePath1: "assets/images/product2.png",
+        imagePath1: productImage2,
         price: "Rs150",
         heading1: 'Accu-check Active \nTest Strip'),
     const MyProduct(
-        imagePath1: "assets/images/product1.png",
+        imagePath1: productImage1,
         price: "Rs150",
         heading1: 'Accu-check Active \nTest Strip'),
     const MyProduct(
-        imagePath1: "assets/images/product1.png",
+        imagePath1: productImage2,
         price: "Rs150",
         heading1: 'Accu-check Active \nTest Strip'),
     const MyProduct(
-        imagePath1: "assets/images/product1.png",
+        imagePath1: productImage1,
         price: "Rs150",
         heading1: 'Accu-check Active \nTest Strip'),
     const MyProduct(
-        imagePath1: "assets/images/product1.png",
+        imagePath1: productImage2,
         price: "Rs150",
         heading1: 'Accu-check Active \nTest Strip'),
   ];
@@ -88,8 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         ListTile(
                           leading: const CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/Avatar.png'),
+                            backgroundImage: AssetImage(profileImage),
                           ),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -234,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 146,
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
-                        "assets/images/frame1.png",
+                        frameImage1,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -299,47 +299,77 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
+                },
+                child: const Icon(
                   Icons.home_outlined,
                   color: Colors.grey,
                 )),
-            IconButton(
-                onPressed: () {
+            GestureDetector(
+                onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const NotificationScreen()));
                 },
-                icon: const Icon(
+                child: const Icon(
                   Icons.notifications_outlined,
                   color: Colors.grey,
                 )),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
+            GestureDetector(
+                onTap: () {},
+                child: const Icon(
                   Icons.add_box_outlined,
                   color: Colors.blue,
                   size: 40,
                 )),
-            IconButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CartScreen()));
-                },
-                icon: const Icon(
-                  Icons.shopping_bag_outlined,
-                  color: Colors.grey,
-                )),
-            IconButton(
-                onPressed: () {
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CartScreen()));
+                  },
+                  child: const Icon(
+                    Icons.shopping_bag_outlined,
+                    color: Colors.grey,
+                  ),
+                ),
+                Positioned(
+                  right: -2,
+                  top: -5,
+                  child: Container(
+                    height: 15,
+                    width: 15,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.red),
+                    child: Center(
+                      child: Text(
+                        cart.items.length.toString(),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 10),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            GestureDetector(
+                onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const ProfileScreen()));
                 },
-                icon: const Icon(
+                child: const Icon(
                   Icons.person_outline,
                   color: Colors.grey,
                 ))

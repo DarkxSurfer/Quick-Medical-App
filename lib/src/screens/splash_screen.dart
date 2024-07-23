@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/common_widgets/logo.dart';
+import 'package:medicalstoreapp/src/constants/image_strings.dart';
 import 'package:medicalstoreapp/src/screens/walkthrough_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Image.asset(
-              "assets/images/splash_background.png",
+              splashBackground,
               fit: BoxFit.fill,
             ),
           ),

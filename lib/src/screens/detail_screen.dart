@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/common_widgets/pakage_size.dart';
+import 'package:medicalstoreapp/src/constants/image_strings.dart';
 import 'package:medicalstoreapp/src/provider/cart_provider.dart';
 import 'package:medicalstoreapp/src/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
@@ -78,7 +79,7 @@ class DetailScreen extends StatelessWidget {
                   color: const Color(0xffF8F8F8),
                   height: 178,
                   width: MediaQuery.of(context).size.width,
-                  child: Image.asset("assets/images/product2.png")),
+                  child: Image.asset(productImage2)),
               const SizedBox(
                 height: 10,
               ),
@@ -106,7 +107,7 @@ class DetailScreen extends StatelessWidget {
                         'productId',
                         56,
                         'Sugar Free Gold Low Calories',
-                        'assets/images/product2.png');
+                        productImage2);
                   },
                   child: const Text(
                     "Add to cart",
@@ -217,7 +218,7 @@ class DetailScreen extends StatelessWidget {
               Container(
                   width: 332,
                   child: Image.asset(
-                    "assets/images/rating.png",
+                    ratingImage,
                     fit: BoxFit.fitWidth,
                   )),
               const SizedBox(

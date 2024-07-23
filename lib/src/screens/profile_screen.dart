@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/common_widgets/custom_profile_options.dart';
+import 'package:medicalstoreapp/src/constants/image_strings.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -24,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
           const ListTile(
             leading: CircleAvatar(
               radius: 30,
-              backgroundImage: AssetImage("assets/images/Avatar.png"),
+              backgroundImage: AssetImage(profileImage),
             ),
             title: Text(
               "Hi, Meezaab ",

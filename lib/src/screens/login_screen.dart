@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/common_widgets/logo.dart';
+import 'package:medicalstoreapp/src/screens/email_login.dart';
 import 'package:medicalstoreapp/src/screens/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(child: CustomLogo(color: Colors.black)),
+            const Center(child: CustomLogo(color: Colors.black)),
             const SizedBox(height: 20.0),
             Text(
               "Please Enter your Mobile Number \nto Login/Sign Up",
@@ -30,35 +31,9 @@ class LoginScreen extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                   color: Colors.grey.withOpacity(0.6)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(6.0),
-            //   child: TextFormField(
-            //     controller: numController,
-            //     decoration: InputDecoration(
-            //         contentPadding: const EdgeInsets.only(
-            //             right: 10, left: 10, top: 10, bottom: 10),
-            //         hintText: 'Enter Your Number',
-            //         enabledBorder: const OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey,),
-            //         ),
-            //         focusedBorder: const OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         border: OutlineInputBorder(
-            //             borderRadius: BorderRadius.circular(30))),
-            //     validator: (value) {
-            //       bool emailValid = RegExp(r"^[0-9.0-9.0-9+").hasMatch(value!);
-            //       if (value.isEmpty) {
-            //         return "Enter valid Email";
-            //       } else if (!emailValid) {
-            //         return "Enter valid Email";
-            //       }
-            //     },
-            //   ),
-            // ),
             TextFormField(
               decoration: InputDecoration(
                 hintText: '+92 312 3456789',
@@ -72,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -81,12 +56,10 @@ class LoginScreen extends StatelessWidget {
                   onTap: () {
                     // if (_formfield.currentState!.validate()) {
                     //   print("Success");
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
-                      numController.clear();
-                    }
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    numController.clear();
+                  }
                   // },
                   ,
                   child: Container(
@@ -101,7 +74,25 @@ class LoginScreen extends StatelessWidget {
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
                       )),
-                ))
+                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Login with Email Instead?"),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => EmailLogin()));
+                  },
+                  child: const Text(
+                    "Click Here",
+                    style: TextStyle(
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

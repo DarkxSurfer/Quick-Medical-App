@@ -32,7 +32,7 @@ class DetailScreen extends StatelessWidget {
                     Icons.shopping_bag_outlined,
                     
                   ),
-                ),
+                ),cart.items.isNotEmpty?
                 Positioned(
                   right: -2,
                   top: -5,
@@ -48,7 +48,8 @@ class DetailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
+                ):
+                SizedBox(),
               ],
             ),
           )

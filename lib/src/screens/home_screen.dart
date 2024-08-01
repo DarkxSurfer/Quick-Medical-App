@@ -125,27 +125,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  Positioned(
-                                    right: -2,
-                                    top: -5,
-                                    child: Container(
-                                      height: 15,
-                                      width: 15,
-                                      decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.red),
-                                      child: Center(
-                                        child: Text(
-                                          cart.items.length.toString(),
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 10),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  cart.items.isNotEmpty
+                                      ? Positioned(
+                                          right: -2,
+                                          top: -5,
+                                          child: Container(
+                                            height: 15,
+                                            width: 15,
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.red),
+                                            child: Center(
+                                              child: Text(
+                                                cart.items.length.toString(),
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 10),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : SizedBox(),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -343,23 +345,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.grey,
                   ),
                 ),
-                Positioned(
-                  right: -2,
-                  top: -5,
-                  child: Container(
-                    height: 15,
-                    width: 15,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.red),
-                    child: Center(
-                      child: Text(
-                        cart.items.length.toString(),
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
-                      ),
-                    ),
-                  ),
-                ),
+                cart.items.isNotEmpty
+                    ? Positioned(
+                        right: -2,
+                        top: -5,
+                        child: Container(
+                          height: 15,
+                          width: 15,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.red),
+                          child: Center(
+                            child: Text(
+                              cart.items.length.toString(),
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 10),
+                            ),
+                          ),
+                        ),
+                      )
+                    : SizedBox(),
               ],
             ),
             GestureDetector(

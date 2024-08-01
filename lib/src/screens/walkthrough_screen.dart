@@ -81,7 +81,9 @@ class WalkthroughScreen extends StatelessWidget {
                     if (index != walkthroughData.length - 1)
                       TextButton(
                         onPressed: () {
-                          // Handle skip
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => LoginScreen(),));
                         },
                         child: Text(
                           "Skip",

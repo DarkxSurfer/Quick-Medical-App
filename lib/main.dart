@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/firebase_options.dart';
 import 'package:medicalstoreapp/src/provider/cart_provider.dart';
-import 'package:medicalstoreapp/src/screens/splash_screen.dart';
 import 'package:medicalstoreapp/src/services/auth/auth_gate.dart';
 import 'package:provider/provider.dart';
 

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/provider/cart_provider.dart';
+import 'package:medicalstoreapp/src/screens/success_screen.dart';
 import 'package:provider/provider.dart';
 
 class CustomBottomSheet extends StatelessWidget {
+  const CustomBottomSheet({super.key});
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<CartProvider>(context);
@@ -26,7 +29,7 @@ class CustomBottomSheet extends StatelessWidget {
                     fontWeight: FontWeight.bold, fontSize: height * 0.03),
               ),
               IconButton(
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ],
@@ -108,7 +111,7 @@ class CustomBottomSheet extends StatelessWidget {
                 SizedBox(
                   height: height * 0.01,
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: height * 0.01,
                 ),
@@ -131,8 +134,16 @@ class CustomBottomSheet extends StatelessWidget {
             ),
           ),
           SizedBox(height: height * 0.02),
-          InkWell(
-            onTap: () {},
+          GestureDetector(
+            onTap: () {
+              provider.items.isNotEmpty
+                  ? Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SuccessScreen()))
+                  : ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('No Items in the Cart.')));
+            },
             child: Container(
                 height: 50,
                 decoration: BoxDecoration(

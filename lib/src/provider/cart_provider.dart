@@ -5,7 +5,7 @@ class CartItem {
   final String title;
   final int quantity;
   final double price;
-  final String imageUrl; // Add imageUrl property
+  final String imageUrl;
 
   CartItem({
     required this.id,
@@ -68,7 +68,7 @@ class CartProvider with ChangeNotifier {
   }
 
   void updateItemQuantity(String productId, int quantity) {
-    if (_items.containsKey(productId)) {
+    if (_items.containsKey(productId) && quantity > 0) {
       _items.update(
         productId,
         (existingCartItem) => CartItem(
@@ -80,6 +80,13 @@ class CartProvider with ChangeNotifier {
         ),
       );
       notifyListeners();
+    } else {
+      removeItem(productId);
     }
+  }
+
+  void clearCart() {
+    _items = {};
+    notifyListeners();
   }
 }

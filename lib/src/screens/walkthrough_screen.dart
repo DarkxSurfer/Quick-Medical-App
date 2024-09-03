@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/constants/image_strings.dart';
-import 'package:medicalstoreapp/src/screens/login_screen.dart';
-
-import 'package:flutter/material.dart';
-import 'package:medicalstoreapp/src/constants/image_strings.dart';
-import 'package:medicalstoreapp/src/screens/login_screen.dart';
+import 'package:medicalstoreapp/src/services/auth/auth_gate.dart';
 
 class WalkthroughScreen extends StatelessWidget {
   const WalkthroughScreen({super.key});
@@ -36,7 +32,7 @@ class WalkthroughScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: PageView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: walkthroughData.length,
         itemBuilder: (context, index) {
           final item = walkthroughData[index];
@@ -78,24 +74,26 @@ class WalkthroughScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    if (index != walkthroughData.length - 1)
+                    if (index == walkthroughData.length - 1)
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => LoginScreen(),));
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (BuildContext context) => const AuthGate(),
+                          ));
                         },
                         child: Text(
                           "Skip",
                           style: TextStyle(color: Colors.grey.withOpacity(0.5)),
                         ),
                       ),
-                    if (index == walkthroughData.length - 1)
+                    if (index != walkthroughData.length - 1)
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (BuildContext context) => LoginScreen(),
+                              builder: (BuildContext context) =>
+                                  const AuthGate(),
                             ),
                           );
                         },

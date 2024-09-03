@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:medicalstoreapp/src/screens/detail_screen.dart';
 
+// ignore: must_be_immutable
 class MyProduct extends StatelessWidget {
-  const MyProduct({
+  MyProduct({
     super.key,
     required this.imagePath1,
     required this.price,
     required this.heading1,
-    
+    required this.goTo,
   });
 
   final String imagePath1;
   final String price;
   final String heading1;
+  var goTo;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class MyProduct extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const DetailScreen()));
+              context, MaterialPageRoute(builder: (context) => goTo));
         },
         child: Column(
           children: [
@@ -38,22 +39,21 @@ class MyProduct extends StatelessWidget {
               width: 159,
               child: Column(
                 children: [
-                  Image.asset(imagePath1),
+                  Expanded(child: Image.asset(imagePath1)),
                   Container(
                     decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
-                  )),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        )),
                     width: 158,
                     height: 110,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: 
-                        MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             heading1,
@@ -62,16 +62,17 @@ class MyProduct extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
                           ),
-                          
-                          Text(price,style: const TextStyle(
+                          Text(
+                            price,
+                            style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.black),),
+                                color: Colors.black),
+                          ),
                         ],
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),

@@ -1,12 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:medicalstoreapp/src/common_widgets/logo.dart';
 import 'package:medicalstoreapp/src/common_widgets/signup_func.dart';
 import 'package:medicalstoreapp/src/screens/email_signup.dart';
 
 class EmailLogin extends StatefulWidget {
-  EmailLogin({super.key});
+  const EmailLogin({super.key});
 
   @override
   State<EmailLogin> createState() => _EmailLoginState();
@@ -36,12 +34,10 @@ class _EmailLoginState extends State<EmailLogin> {
               const CustomLogo(color: Colors.black),
               const SizedBox(height: 20),
               const Text("Enter Email And Password To Login"),
-              
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(6.0),
-                child: 
-                Form(
+                child: Form(
                   child: TextFormField(
                     controller: emailController,
                     decoration: const InputDecoration(
@@ -56,23 +52,12 @@ class _EmailLoginState extends State<EmailLogin> {
                       ),
                       prefixIcon: Icon(Icons.email_outlined),
                     ),
-                    validator: (value) {
-                      bool emailValid = RegExp(
-                              r"^[a-zA-Z0-9.a-zA-z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          .hasMatch(value!);
-                      if (value.isEmpty) {
-                        return "Enter valid Email";
-                      } else if (!emailValid) {
-                        return "Enter valid Email";
-                      }
-                    },
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(6.0),
-                child: 
-                Form(
+                child: Form(
                   child: TextFormField(
                     controller: passController,
                     obscureText: passToggle,
@@ -104,6 +89,7 @@ class _EmailLoginState extends State<EmailLogin> {
                       } else if (passController.text.length < 6) {
                         return "Password length should be more than 6";
                       }
+                      return null;
                     },
                   ),
                 ),
@@ -147,7 +133,7 @@ class _EmailLoginState extends State<EmailLogin> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => EmailSignup()));
+                              builder: (context) => const EmailSignup()));
                     },
                     child: const Text(
                       "SignUp",

@@ -6,7 +6,7 @@ class CustomCategory extends StatelessWidget {
   final color;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {},
       child: Container(
         height: 120,
@@ -24,9 +24,9 @@ class CustomCategory extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-               Text(
+              Text(
                 text,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 11,
                     fontWeight: FontWeight.w300),

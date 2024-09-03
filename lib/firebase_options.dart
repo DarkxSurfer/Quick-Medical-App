@@ -85,5 +85,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'quickmedical-app.appspot.com',
     measurementId: 'G-4V2WB4LKK0',
   );
-
 }

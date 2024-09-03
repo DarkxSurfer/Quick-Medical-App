@@ -3,10 +3,12 @@ import 'package:medicalstoreapp/src/common_widgets/logo.dart';
 import 'package:medicalstoreapp/src/screens/email_login.dart';
 import 'package:medicalstoreapp/src/screens/home_screen.dart';
 
+// ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   TextEditingController numController = TextEditingController();
+  // ignore: unused_field
   final _formfield = GlobalKey<FormState>();
 
   @override
@@ -56,8 +58,10 @@ class LoginScreen extends StatelessWidget {
                   onTap: () {
                     // if (_formfield.currentState!.validate()) {
                     //   print("Success");
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
                     numController.clear();
                   }
                   // },
@@ -81,8 +85,10 @@ class LoginScreen extends StatelessWidget {
                 const Text("Login with Email Instead?"),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => EmailLogin()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const EmailLogin()));
                   },
                   child: const Text(
                     "Click Here",

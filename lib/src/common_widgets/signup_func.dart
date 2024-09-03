@@ -1,7 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:medicalstoreapp/src/screens/email_login.dart';
-import 'package:medicalstoreapp/src/screens/home_screen.dart';
+import 'package:medicalstoreapp/src/screens/navigation_bar.dart';
 
 bool login = false;
 
@@ -11,54 +12,76 @@ Future<void> signUp(BuildContext context, String email, String password) async {
       email: email,
       password: password,
     );
-    
+
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-          builder: (context) =>
-              EmailLogin()), 
+      MaterialPageRoute(builder: (context) => const NavigationToggle()),
     );
-    print('User registered successfully.');
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('User registered successfully.')));
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
-      print('The password provided is too weak.');
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('The password provided is too weak.')));
     } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for that email.');
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('The account already exists for that email.')));
     } else {
-      print('Registration failed with error code: ${e.code}');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Registration failed with error code: ${e.code}')));
     }
   } catch (e) {
-    print('Registration failed with error: $e');
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Registration failed with error: $e')));
   }
 }
 
 Future<void> signIn(BuildContext context, String email, String password) async {
   try {
+    // ignore: unused_local_variable
     final UserCredential credential =
         await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
-    login = true;
-    print('User signed in successfully: ${credential.user?.email}');
-    print('Login status: $login');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Logged in successfully!')),
+    );
 
-  
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-          builder: (context) =>
-              HomeScreen()),
+      MaterialPageRoute(builder: (context) => const NavigationToggle()),
     );
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
-      print('No user found for that email.');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('This User does not exist.')),
+      );
     } else if (e.code == 'wrong-password') {
-      print('Wrong password provided for that user.');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Password incorrect.')),
+      );
     } else {
-      print('Sign-in failed with error code: ${e.code}');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Sign-in failed with error code: ${e.code}')),
+      );
     }
   } catch (e) {
-    print('Sign-in failed with error: $e');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Sign-in failed with error: $e')),
+    );
+  }
+}
+
+void signOut(BuildContext context) async {
+  try {
+    await FirebaseAuth.instance.signOut();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Signed out successfully!')),
+    );
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Sign out failed: ${e.toString()}')),
+    );
   }
 }

@@ -4,7 +4,7 @@ import 'package:medicalstoreapp/src/common_widgets/signup_func.dart';
 import 'package:medicalstoreapp/src/screens/email_login.dart';
 
 class EmailSignup extends StatefulWidget {
-  EmailSignup({super.key});
+  const EmailSignup({super.key});
 
   @override
   State<EmailSignup> createState() => _EmailSignupState();
@@ -69,16 +69,6 @@ class _EmailSignupState extends State<EmailSignup> {
                     ),
                     prefixIcon: Icon(Icons.email_outlined),
                   ),
-                  validator: (value) {
-                    bool emailValid = RegExp(
-                            r"^[a-zA-Z0-9.a-zA-z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                        .hasMatch(value!);
-                    if (value.isEmpty) {
-                      return "Enter valid Email";
-                    } else if (!emailValid) {
-                      return "Enter valid Email";
-                    }
-                  },
                 ),
               ),
               Padding(
@@ -107,14 +97,6 @@ class _EmailSignupState extends State<EmailSignup> {
                             ? Icons.visibility
                             : Icons.visibility_off),
                       )),
-                  validator: (value) {
-                    setState(() {});
-                    if (value!.isEmpty) {
-                      return "Enter Password";
-                    } else if (passController.text.length < 6) {
-                      return "Password length should be more than 6";
-                    }
-                  },
                 ),
               ),
               Padding(

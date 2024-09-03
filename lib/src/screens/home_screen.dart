@@ -4,14 +4,16 @@ import 'package:medicalstoreapp/src/common_widgets/product.dart';
 import 'package:medicalstoreapp/src/constants/image_strings.dart';
 import 'package:medicalstoreapp/src/screens/cart_screen.dart';
 import 'package:medicalstoreapp/src/screens/notifications.dart';
-import 'package:medicalstoreapp/src/screens/profile_screen.dart';
-import 'package:medicalstoreapp/src/common_widgets/product.dart';
 import 'package:medicalstoreapp/src/provider/cart_provider.dart';
-import 'package:medicalstoreapp/src/screens/cart_screen.dart';
+import 'package:medicalstoreapp/src/screens/products/active_test_strip.dart';
+import 'package:medicalstoreapp/src/screens/products/juices.dart';
+import 'package:medicalstoreapp/src/screens/products/sugar.dart';
+import 'package:medicalstoreapp/src/screens/products/sugarfree_gold.dart';
+import 'package:medicalstoreapp/src/screens/products/vitamins.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -25,28 +27,36 @@ class _HomeScreenState extends State<HomeScreen> {
   final PageController _pageController = PageController();
 
   final List<MyProduct> imagePaths = [
-    const MyProduct(
-        imagePath1: productImage1,
-        price: "Rs150",
-        heading1: 'Accu-check Active \nTest Strip'),
-    const MyProduct(
+    MyProduct(
+      imagePath1: productImage1,
+      price: "Rs150",
+      heading1: 'Accu-check Active \nTest Strip',
+      goTo: const ActiveTestStrip(),
+    ),
+    MyProduct(
         imagePath1: productImage2,
-        price: "Rs150",
-        heading1: 'Accu-check Active \nTest Strip'),
-    const MyProduct(
+        price: "Rs.56",
+        goTo: const SugarfreeGold(),
+        heading1: 'Sugar Free Gold Low Calories'),
+    MyProduct(
+        imagePath1: productImage3,
+        price: "Rs.25",
+        goTo: const SugarSubstitutes(),
+        heading1: 'Sugar Substitute'),
+    MyProduct(
+      imagePath1: productImage4,
+      price: "Rs18",
+      heading1: 'Juices & Vinegars',
+      goTo: const Juices(),
+    ),
+    MyProduct(
+        imagePath1: productImage5,
+        price: "Rs.92",
+        goTo: const Vitamins(),
+        heading1: 'Vitamins Medicines'),
+    MyProduct(
+        goTo: const ActiveTestStrip(),
         imagePath1: productImage1,
-        price: "Rs150",
-        heading1: 'Accu-check Active \nTest Strip'),
-    const MyProduct(
-        imagePath1: productImage2,
-        price: "Rs150",
-        heading1: 'Accu-check Active \nTest Strip'),
-    const MyProduct(
-        imagePath1: productImage1,
-        price: "Rs150",
-        heading1: 'Accu-check Active \nTest Strip'),
-    const MyProduct(
-        imagePath1: productImage2,
         price: "Rs150",
         heading1: 'Accu-check Active \nTest Strip'),
   ];
@@ -102,11 +112,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                           const NotificationScreen(),
                                     ));
                                   },
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.notifications_none_rounded,
                                     color: Colors.white,
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Stack(
@@ -118,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  CartScreen()));
+                                                  const CartScreen()));
                                     },
                                     child: const Icon(
                                       Icons.shopping_bag_outlined,
@@ -145,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ),
                                           ),
                                         )
-                                      : SizedBox(),
+                                      : const SizedBox(),
                                 ],
                               ),
                             ],
@@ -232,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Stack(children: [
-                    Container(
+                    SizedBox(
                       height: 146,
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(
@@ -294,89 +304,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                  );
-                },
-                child: const Icon(
-                  Icons.home_outlined,
-                  color: Colors.grey,
-                )),
-            GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const NotificationScreen()));
-                },
-                child: const Icon(
-                  Icons.notifications_outlined,
-                  color: Colors.grey,
-                )),
-            GestureDetector(
-                onTap: () {},
-                child: const Icon(
-                  Icons.add_box_outlined,
-                  color: Colors.blue,
-                  size: 40,
-                )),
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CartScreen()));
-                  },
-                  child: const Icon(
-                    Icons.shopping_bag_outlined,
-                    color: Colors.grey,
-                  ),
-                ),
-                cart.items.isNotEmpty
-                    ? Positioned(
-                        right: -2,
-                        top: -5,
-                        child: Container(
-                          height: 15,
-                          width: 15,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.red),
-                          child: Center(
-                            child: Text(
-                              cart.items.length.toString(),
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 10),
-                            ),
-                          ),
-                        ),
-                      )
-                    : SizedBox(),
-              ],
-            ),
-            GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfileScreen()));
-                },
-                child: const Icon(
-                  Icons.person_outline,
-                  color: Colors.grey,
-                ))
           ],
         ),
       ),

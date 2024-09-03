@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/common_widgets/pakage_size.dart';
 import 'package:medicalstoreapp/src/constants/image_strings.dart';
 import 'package:medicalstoreapp/src/provider/cart_provider.dart';
+import 'package:medicalstoreapp/src/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -23,7 +24,54 @@ class CustomDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context);
+
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Product Details'),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CartScreen()));
+                  },
+                  child: const Icon(
+                    Icons.shopping_bag_outlined,
+                    color: Colors.black,
+                  ),
+                ),
+                cart.items.isNotEmpty
+                    ? Positioned(
+                        right: -3,
+                        top: -5,
+                        child: Container(
+                          height: 15,
+                          width: 15,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.red),
+                          child: Center(
+                            child: Text(
+                              cart.items.length.toString(),
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 10),
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
+              ],
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -64,17 +112,21 @@ class CustomDetailScreen extends StatelessWidget {
                   ],
                 ),
                 subtitle: const Text("Etiam mollis "),
-                trailing: TextButton(
+                trailing: TextButton.icon(
                   onPressed: () {
                     Provider.of<CartProvider>(context, listen: false).addItem(
                         productId, productPrice, productName, productImage);
                   },
-                  child: const Text(
+                  label: const Text(
                     "Add to cart",
                     style: TextStyle(
                         color: Color(
                       0xff006AFF,
                     )),
+                  ),
+                  icon: const Icon(
+                    Icons.add_box_outlined,
+                    color: Color(0xff006AFF),
                   ),
                 ),
               ),

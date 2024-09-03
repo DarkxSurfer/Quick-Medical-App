@@ -91,19 +91,10 @@ class CartScreen extends StatelessWidget {
                           imageUrl: cart.items.values.toList()[i].imageUrl,
                         ),
                       ),
-                    )
+                    ),
+                    const CustomBottomSheet()
                   ],
                 ),
-              ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            showModalBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  return const CustomBottomSheet();
-                });
-          },
-          child: const Icon(Icons.monetization_on_outlined),
-        ));
+              ));
   }
 }

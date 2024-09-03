@@ -1,7 +1,6 @@
 /*App Image Strings*/
 
 // Splash Screen
-import 'package:flutter/material.dart';
 
 const splashBackground = "assets/images/splash_background.png";
 

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/common_widgets/logo.dart';
+import 'package:medicalstoreapp/src/common_widgets/signup_func.dart';
 import 'package:medicalstoreapp/src/screens/email_login.dart';
-import 'package:medicalstoreapp/src/screens/home_screen.dart';
+import 'package:medicalstoreapp/src/screens/navigation_bar.dart';
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
+  final _phoneFormKey = GlobalKey<FormState>();
+  final _otpFormKey = GlobalKey<FormState>();
 
-  TextEditingController numController = TextEditingController();
-  // ignore: unused_field
-  final _formfield = GlobalKey<FormState>();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _otpController = TextEditingController();
+  bool login = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +39,28 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: '+92 312 3456789',
-                hintStyle: const TextStyle(
-                    fontSize: 15.0,
-                    color: Color(0xffA9A9A9),
-                    fontWeight: FontWeight.w500),
-                contentPadding: const EdgeInsets.all(15),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
+            Form(
+              key: _phoneFormKey,
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your phone number.';
+                  } else if (value.length != 13) {
+                    return 'Invalid Phone Number';
+                  }
+                  return null;
+                },
+                controller: _phoneNumberController,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  hintText: '+923123456789',
+                  // prefixIcon: CountryCodePicker(
+                  //   onChanged: (value) {},
+                  //   initialSelection: 'PK',
+                  // ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
                 ),
               ),
             ),
@@ -54,18 +69,65 @@ class LoginScreen extends StatelessWidget {
             ),
             Padding(
                 padding: const EdgeInsets.all(6.0),
-                child: InkWell(
+                child: GestureDetector(
                   onTap: () {
-                    // if (_formfield.currentState!.validate()) {
-                    //   print("Success");
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
-                    numController.clear();
-                  }
-                  // },
-                  ,
+                    if (_phoneFormKey.currentState!.validate()) {
+                      verifyPhoneNumber(
+                          context, _phoneNumberController.text.trim());
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('OTP Verification'),
+                          content: Form(
+                            key: _otpFormKey,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text('Enter the 6 Digit OTP'),
+                                const SizedBox(height: 20),
+                                TextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter the OTP received.';
+                                    } else if (value.length != 6) {
+                                      return 'Invalid OTP';
+                                    }
+                                    return null;
+                                  },
+                                  controller: _otpController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    labelText: "Enter OTP",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () async {
+                                if (_otpFormKey.currentState!.validate()) {
+                                  signInWithPhoneNumber(
+                                      context, _otpController.text);
+                                  login = true;
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const NavigationToggle()));
+                                }
+                              },
+                              child: const Text("Submit"),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  },
                   child: Container(
                       height: 50,
                       decoration: BoxDecoration(
@@ -82,7 +144,7 @@ class LoginScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Login with Email Instead?"),
+                const Text("Login with Email Instead? "),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(

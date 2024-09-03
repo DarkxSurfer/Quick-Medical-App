@@ -5,11 +5,7 @@ import 'package:medicalstoreapp/src/constants/image_strings.dart';
 import 'package:medicalstoreapp/src/screens/cart_screen.dart';
 import 'package:medicalstoreapp/src/screens/notifications.dart';
 import 'package:medicalstoreapp/src/provider/cart_provider.dart';
-import 'package:medicalstoreapp/src/screens/products/active_test_strip.dart';
-import 'package:medicalstoreapp/src/screens/products/juices.dart';
-import 'package:medicalstoreapp/src/screens/products/sugar.dart';
-import 'package:medicalstoreapp/src/screens/products/sugarfree_gold.dart';
-import 'package:medicalstoreapp/src/screens/products/vitamins.dart';
+import 'package:medicalstoreapp/src/screens/products/all_products.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {

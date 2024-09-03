@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/constants/image_strings.dart';
 import 'package:medicalstoreapp/src/screens/navigation_bar.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/cart_provider.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context, listen: false);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -35,6 +40,7 @@ class SuccessScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const NavigationToggle()));
+              cart.clearCart();
             },
             child: Container(
                 height: 50,

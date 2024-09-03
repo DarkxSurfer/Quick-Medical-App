@@ -28,10 +28,6 @@ class CustomBottomSheet extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, fontSize: height * 0.03),
               ),
-              IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
             ],
           ),
           SizedBox(height: height * 0.03),

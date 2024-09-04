@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:medicalstoreapp/src/common_widgets/category.dart';
 import 'package:medicalstoreapp/src/common_widgets/product.dart';
+import 'package:medicalstoreapp/src/common_widgets/signup_func.dart';
 import 'package:medicalstoreapp/src/constants/image_strings.dart';
 import 'package:medicalstoreapp/src/screens/cart_screen.dart';
 import 'package:medicalstoreapp/src/screens/notifications.dart';
 import 'package:medicalstoreapp/src/provider/cart_provider.dart';
 import 'package:medicalstoreapp/src/screens/products/all_products.dart';
+import 'package:medicalstoreapp/src/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {

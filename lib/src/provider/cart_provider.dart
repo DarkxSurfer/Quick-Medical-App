@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medicalstoreapp/src/common_widgets/signup_func.dart';
 
 class CartItem {
   final String id;
@@ -88,11 +87,6 @@ class CartProvider with ChangeNotifier {
 
   void clearCart() {
     _items = {};
-    notifyListeners();
-  }
-
-  void loginFunc() {
-    login = !login;
     notifyListeners();
   }
 }

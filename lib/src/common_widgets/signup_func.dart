@@ -2,7 +2,9 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:medicalstoreapp/src/screens/navigation_bar.dart';
+import 'package:medicalstoreapp/src/screens/splash_screen.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -78,9 +80,7 @@ Future<void> signIn(BuildContext context, String email, String password) async {
 void signOut(BuildContext context) async {
   try {
     await _auth.signOut();
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Signed out successfully!')),
-    );
+    Get.snackbar('Goodbye!', 'Signed out successfully!');
   } catch (e) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Sign out failed: ${e.toString()}')),
@@ -101,16 +101,13 @@ Future<void> verifyPhoneNumber(context, phoneController) async {
       },
       verificationFailed: (FirebaseAuthException e) {
         print('Verification failed: ${e.message}');
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Verification failed. Please try again.'),
-        ));
+
+        Get.snackbar('Verification failed.', ' Please try again.');
       },
       codeSent: (String verificationId, int? resendToken) {
         _verificationId = verificationId;
 
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Verification code sent to your phone.'),
-        ));
+        Get.snackbar('Verification code sent.', 'Please check your phone.');
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         _verificationId = verificationId;
@@ -118,9 +115,7 @@ Future<void> verifyPhoneNumber(context, phoneController) async {
     );
   } catch (e) {
     print('Error: $e');
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Error occurred. Please try again.'),
-    ));
+    Get.snackbar('Error occurred.', ' Please try again.');
   }
 }
 
@@ -133,18 +128,19 @@ Future<void> signInWithPhoneNumber(context, String smsCode) async {
       );
       await _auth.signInWithCredential(credential);
       print("Logged in successfully!");
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Logged in successfully!'),
-      ));
+
+      Get.snackbar(
+        "Welcome!",
+        "Logged in successfully!",
+      );
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const SplashScreen()));
     } catch (e) {
       print('Sign in failed: $e');
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Sign in failed. Please try again.'),
-      ));
+
+      Get.snackbar('Sign in failed.', 'Please try again.');
     }
   } else {
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Verification ID is null. Please try again.'),
-    ));
+    Get.snackbar('Verification ID is null.', 'Please try again.');
   }
 }

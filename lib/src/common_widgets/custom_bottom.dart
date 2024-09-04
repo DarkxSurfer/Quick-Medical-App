@@ -132,13 +132,10 @@ class CustomBottomSheet extends StatelessWidget {
           SizedBox(height: height * 0.02),
           GestureDetector(
             onTap: () {
-              provider.items.isNotEmpty
-                  ? Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SuccessScreen()))
-                  : ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('No Items in the Cart.')));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SuccessScreen()));
             },
             child: Container(
                 height: 50,

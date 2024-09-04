@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:medicalstoreapp/firebase_options.dart';
 import 'package:medicalstoreapp/src/provider/cart_provider.dart';
-import 'package:medicalstoreapp/src/services/auth/auth_gate.dart';
+import 'package:medicalstoreapp/src/provider/notification_provider.dart'; // Import the notification provider
+import 'package:medicalstoreapp/src/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -11,9 +13,16 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => CartProvider()),
-  ], child: const MyApp()));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(
+            create: (_) => NotificationService()), // Add this line
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,8 +30,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: AuthGate(),
+    return const GetMaterialApp(
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

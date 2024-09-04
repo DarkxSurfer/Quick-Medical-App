@@ -5,7 +5,9 @@
 const splashBackground = "assets/images/splash_background.png";
 
 // On Boarding Screen
-const onBoardingImage1 = "assets/images/splash_image_1.png";
+const onBoardingImage1 = "assets/images/onboarding1.png";
+const onBoardingImage2 = "assets/images/onboarding2.png";
+const onBoardingImage3 = "assets/images/onboarding3.png";
 
 // Profile Screen
 const profileImage = "assets/images/Avatar.png";

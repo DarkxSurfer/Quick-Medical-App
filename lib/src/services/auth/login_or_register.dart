@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medicalstoreapp/src/screens/walkthrough_screen.dart';
 
 import '../../screens/email_signup.dart';
 import '../../screens/login_screen.dart';
@@ -22,9 +23,9 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
   @override
   Widget build(BuildContext context) {
     if (showLoginPage) {
-      return LoginScreen();
+      return const WalkthroughScreen();
     } else {
-      return EmailSignup();
+      return const EmailSignup();
     }
   }
 }

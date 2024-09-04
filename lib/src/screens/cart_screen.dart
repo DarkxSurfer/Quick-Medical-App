@@ -6,8 +6,24 @@ import 'package:medicalstoreapp/src/provider/cart_provider.dart';
 import 'package:medicalstoreapp/src/screens/navigation_bar.dart';
 import 'package:provider/provider.dart';
 
+import '../models/notification_model.dart';
+import '../provider/notification_provider.dart';
+
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
+
+  checkoutItem(BuildContext context, String itemName) {
+    // Your checkout logic here
+
+    // After successful checkout, add a notification
+    Provider.of<NotificationService>(context, listen: false).addNotification(
+      NotificationItem(
+        title: 'Checkout Successful',
+        message: 'You have successfully checked out $itemName.',
+        timestamp: DateTime.now(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +31,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Your Cart'),
+          automaticallyImplyLeading: false,
         ),
         body: cart.items.isEmpty
             ? Center(

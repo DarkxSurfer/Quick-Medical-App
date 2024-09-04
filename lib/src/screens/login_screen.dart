@@ -1,17 +1,30 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:medicalstoreapp/src/common_widgets/logo.dart';
 import 'package:medicalstoreapp/src/common_widgets/signup_func.dart';
 import 'package:medicalstoreapp/src/screens/email_login.dart';
+import 'package:medicalstoreapp/src/screens/home_screen.dart';
 import 'package:medicalstoreapp/src/screens/navigation_bar.dart';
+import 'package:medicalstoreapp/src/screens/splash_screen.dart';
 
 // ignore: must_be_immutable
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _phoneFormKey = GlobalKey<FormState>();
+
   final _otpFormKey = GlobalKey<FormState>();
 
   final TextEditingController _phoneNumberController = TextEditingController();
+
   final TextEditingController _otpController = TextEditingController();
+
   bool login = false;
 
   @override
@@ -114,11 +127,6 @@ class LoginScreen extends StatelessWidget {
                                   signInWithPhoneNumber(
                                       context, _otpController.text);
                                   login = true;
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const NavigationToggle()));
                                 }
                               },
                               child: const Text("Submit"),
@@ -153,7 +161,7 @@ class LoginScreen extends StatelessWidget {
                             builder: (context) => const EmailLogin()));
                   },
                   child: const Text(
-                    "Click Here",
+                    " Click Here",
                     style: TextStyle(
                       color: Colors.blue,
                     ),

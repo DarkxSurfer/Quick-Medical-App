@@ -37,10 +37,23 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           const Positioned(
-              left: 50,
-              right: 50,
-              top: 300,
-              child: CustomLogo(color: Colors.white))
+            left: 50,
+            right: 50,
+            top: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CustomLogo(color: Colors.white),
+                SizedBox(
+                  height: 10,
+                ),
+                CircularProgressIndicator(
+                  color: Colors.white,
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );

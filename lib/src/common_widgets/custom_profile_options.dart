@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomProfileOptions extends StatelessWidget {
-  const CustomProfileOptions(
-      {super.key, required this.text1, required this.icon1});
+  CustomProfileOptions({
+    super.key,
+    required this.text1,
+    required this.icon1,
+  });
 
   final String text1;
   final icon1;

@@ -71,9 +71,8 @@ Enable Firebase Authentication, Firestore, and Cloud Functions.
 
 ### Screenshots
 
-[<img src="https://github.com/DarkxSurfer/Quick-Medical-App/blob/main/screenshots/screenshot1.png" width="200">]
-(https://github.com/DarkxSurfer/Quick-Medical-App/blob/main/screenshots/screenshot1.png)
-[<img src="https://github.com/DarkxSurfer/Quick-Medical-App/blob/main/screenshots/screenshot2.png" width="200">](https://github.com/arkxSurfer/Quick-Medical-App/blob/main/screenshots/screenshot2.png)
+https://www.linkedin.com/posts/darksurfer_flutter-provider-riverpod-activity-7237133421053902848-vAxC?utm_source=li_share&utm_content=feedcontent&utm_medium=g_dt_web&utm_campaign=copy
+
 
 ### Contribution
 
